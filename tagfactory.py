@@ -5,7 +5,9 @@
 #   atomic, burton, full tilt, head, jones, k2, line, look, marker, ride, rossignol, salomon, tyrolia
 # there will be 8 tags a sheet. 3 tags for each item. 
 #  
-#   
+#   TODO: binding and ski tags (skinny and long)
+#   TODO: fix short item names being low on the tag
+#   TODO: test with large price book
 ###########################
 from __future__ import print_function
 import os, sys, csv
