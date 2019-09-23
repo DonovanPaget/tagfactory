@@ -14,22 +14,22 @@ import os, sys, csv
 from PIL import Image, ImageDraw, ImageFont
 
 ## need to open all the logo files for use
-im = Image.open("full tag.png")
-settemplate = Image.open("setof8.png")
+im = Image.open("resources/full tag.png")
+settemplate = Image.open("resources/setof8.png")
 
-burton = Image.open("logo/burtonlogo.png")
-jones = Image.open("logo/jones logo.png")
-k2 = Image.open("logo/k2logo.png")
-atomic = Image.open("logo/atomiclogo.png")
-fulltilt = Image.open("logo/ftlogo.png")
-head = Image.open("logo/headlogo.png")
-line = Image.open("logo/line logo.png")
-look = Image.open("logo/look logo.png")
-marker = Image.open("logo/marker logo.png")
-ride = Image.open("logo/ridelogo.png")
-rossi = Image.open("logo/rossilogo.png")
-salomon = Image.open("logo/salomonlogo.png")
-tyrolia = Image.open("logo/tyrolia logo.png")
+burton = Image.open("resources/logo/burtonlogo.png")
+jones = Image.open("resources/logo/jones logo.png")
+k2 = Image.open("resources/logo/k2logo.png")
+atomic = Image.open("resources/logo/atomiclogo.png")
+fulltilt = Image.open("resources/logo/ftlogo.png")
+head = Image.open("resources/logo/headlogo.png")
+line = Image.open("resources/logo/line logo.png")
+look = Image.open("resources/logo/look logo.png")
+marker = Image.open("resources/logo/marker logo.png")
+ride = Image.open("resources/logo/ridelogo.png")
+rossi = Image.open("resources/logo/rossilogo.png")
+salomon = Image.open("resources/logo/salomonlogo.png")
+tyrolia = Image.open("resources/logo/tyrolia logo.png")
 logolist = [[burton,"BURTON"], [jones, "JONES"], [k2,"K2"], [atomic,"ATOMIC"], [fulltilt,"FULL TILT"], [head,"HEAD"],[line,"LINE"],[look,"LOOK"],[marker,"MARKER"],[ride,"RIDE"],[rossi,"ROSSIGNOL"],[salomon,"SALOMON"],[tyrolia,"TYROLIA"]]
 logobox = (0,0,480,555)
 tagbox = (0,0,1200,555)
@@ -53,7 +53,7 @@ fontname = 'SairaCondensed-Regular.ttf'
 fnt = ImageFont.truetype(fontname,fontsize)
 
 
-with open("testbook.csv") as csv_file:
+with open("resources/pricebook.csv") as csv_file:
     csv_reader = csv.reader(csv_file,delimiter=',')
     for row in csv_reader:
             
@@ -87,7 +87,7 @@ with open("testbook.csv") as csv_file:
         itemprice.text((518,240),price,font=fnt)
 
         # save the new tag
-        im.save(brand+" "+item+".png","PNG")
+        im.save("tags/"+brand+" "+item+".png","PNG")
 
         ## crop the tag and paste it onto a sheet 3 times
         region = im.crop(tagbox)
@@ -98,15 +98,15 @@ with open("testbook.csv") as csv_file:
             ## if the postion is past the end of the sheet, we have to save the current sheet
             ## reset the position counter, and increase the sheet counter.
             if positioncounter == 8:
-                settemplate.save("sheet" + str(sheetcounter) + ".png","PNG")
-                settemplate = Image.open("setof8.png")
+                settemplate.save("tags/sheets/" + "sheet" + str(sheetcounter) + ".png","PNG")
+                settemplate = Image.open("resources/setof8.png")
                 sheetcounter = sheetcounter+1
                 positioncounter = 0
                 
 
         ## save the sheet and reopen the image fresh for new tag creation
         
-        im = Image.open("full tag.png")
+        im = Image.open("resources/full tag.png")
 
 if positioncounter != 0:
     settemplate.save("sheet" + str(sheetcounter) + ".png","PNG")
