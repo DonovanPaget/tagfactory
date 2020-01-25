@@ -17,6 +17,7 @@ from PIL import Image, ImageDraw, ImageFont
 im = Image.open("resources/full tag.png")
 settemplate = Image.open("resources/setof8.png")
 
+
 burton = Image.open("resources/logo/burtonlogo.png")
 jones = Image.open("resources/logo/jones logo.png")
 k2 = Image.open("resources/logo/k2logo.png")
@@ -30,7 +31,10 @@ ride = Image.open("resources/logo/ridelogo.png")
 rossi = Image.open("resources/logo/rossilogo.png")
 salomon = Image.open("resources/logo/salomonlogo.png")
 tyrolia = Image.open("resources/logo/tyrolia logo.png")
-logolist = [[burton,"BURTON"], [jones, "JONES"], [k2,"K2"], [atomic,"ATOMIC"], [fulltilt,"FULL TILT"], [head,"HEAD"],[line,"LINE"],[look,"LOOK"],[marker,"MARKER"],[ride,"RIDE"],[rossi,"ROSSIGNOL"],[salomon,"SALOMON"],[tyrolia,"TYROLIA"]]
+fischer = Image.open("resources/logo/fischer logo.png")
+dynastar = Image.open("resources/logo/dynastar logo.png")
+armada = Image.open("resources/logo/armada logo.png")
+logolist = [[armada,"ARMADA"],[dynastar,"DYNASTAR"],[burton,"BURTON"], [jones, "JONES"], [k2,"K2"], [atomic,"ATOMIC"], [fulltilt,"FULL TILT"], [head,"HEAD"],[line,"LINE"],[look,"LOOK"],[marker,"MARKER"],[ride,"RIDE"],[rossi,"ROSSIGNOL"],[salomon,"SALOMON"],[tyrolia,"TYROLIA"],[fischer,"FISCHER"]]
 logobox = (0,0,480,555)
 tagbox = (0,0,1200,555)
 fontsize = 150
