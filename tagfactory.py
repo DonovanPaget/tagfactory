@@ -14,30 +14,31 @@ import os, sys, csv
 from PIL import Image, ImageDraw, ImageFont
 
 ## need to open all the logo files for use
-im = Image.open("resources/full tag.png")
-settemplate = Image.open("resources/setof8.png")
+im = Image.open("resources/full tag.png").convert("RGBA")
+settemplate = Image.open("resources/setof8.png").convert("RGBA")
 
 
-burton = Image.open("resources/logo/burtonlogo.png")
-jones = Image.open("resources/logo/jones logo.png")
-k2 = Image.open("resources/logo/k2logo.png")
-atomic = Image.open("resources/logo/atomiclogo.png")
-fulltilt = Image.open("resources/logo/ftlogo.png")
-head = Image.open("resources/logo/headlogo.png")
-line = Image.open("resources/logo/line logo.png")
-look = Image.open("resources/logo/look logo.png")
-marker = Image.open("resources/logo/marker logo.png")
-ride = Image.open("resources/logo/ridelogo.png")
-rossi = Image.open("resources/logo/rossilogo.png")
-salomon = Image.open("resources/logo/salomonlogo.png")
-tyrolia = Image.open("resources/logo/tyrolia logo.png")
-fischer = Image.open("resources/logo/fischer logo.png")
-dynastar = Image.open("resources/logo/dynastar logo.png")
-armada = Image.open("resources/logo/armada logo.png")
-smith = Image.open("resources/logo/smith logo.png")
-giro = Image.open("resources/logo/giro logo.png")
-poc = Image.open("resources/logo/poc logo.png")
-logolist = [[poc,"POC"],[giro,"GIRO"],[smith,"SMITH"],[armada,"ARMADA"],[dynastar,"DYNASTAR"],[burton,"BURTON"], [jones, "JONES"], [k2,"K2"], [atomic,"ATOMIC"], [fulltilt,"FULL TILT"], [head,"HEAD"],[line,"LINE"],[look,"LOOK"],[marker,"MARKER"],[ride,"RIDE"],[rossi,"ROSSIGNOL"],[salomon,"SALOMON"],[tyrolia,"TYROLIA"],[fischer,"FISCHER"]]
+burton = Image.open("resources/logo/burtonlogo.png").convert("RGBA")
+jones = Image.open("resources/logo/jones logo.png").convert("RGBA")
+k2 = Image.open("resources/logo/k2logo.png").convert("RGBA")
+atomic = Image.open("resources/logo/atomiclogo.png").convert("RGBA")
+fulltilt = Image.open("resources/logo/ftlogo.png").convert("RGBA")
+head = Image.open("resources/logo/headlogo.png").convert("RGBA")
+line = Image.open("resources/logo/line logo.png").convert("RGBA")
+look = Image.open("resources/logo/look logo.png").convert("RGBA")
+marker = Image.open("resources/logo/marker logo.png").convert("RGBA")
+ride = Image.open("resources/logo/ridelogo.png").convert("RGBA")
+rossi = Image.open("resources/logo/rossilogo.png").convert("RGBA")
+salomon = Image.open("resources/logo/salomonlogo.png").convert("RGBA")
+tyrolia = Image.open("resources/logo/tyrolia logo.png").convert("RGBA")
+fischer = Image.open("resources/logo/fischer logo.png").convert("RGBA")
+dynastar = Image.open("resources/logo/dynastar logo.png").convert("RGBA")
+armada = Image.open("resources/logo/armada logo.png").convert("RGBA")
+smith = Image.open("resources/logo/smith logo.png").convert("RGBA")
+giro = Image.open("resources/logo/giro logo.png").convert("RGBA")
+poc = Image.open("resources/logo/poc logo.png").convert("RGBA")
+lange = Image.open("resources/logo/langelogo.png").convert("RGBA")
+logolist = [[poc,"POC"],[giro,"GIRO"],[smith,"SMITH"],[armada,"ARMADA"],[dynastar,"DYNASTAR"],[burton,"BURTON"], [jones, "JONES"], [k2,"K2"], [atomic,"ATOMIC"], [fulltilt,"FULLTILT"], [head,"HEAD"],[line,"LINE"],[look,"LOOK"],[marker,"MARKER"],[ride,"RIDE"],[rossi,"ROSSIGNOL"],[salomon,"SALOMON"],[tyrolia,"TYROLIA"],[fischer,"FISCHER"],[lange,"LANGE"]]
 logobox = (0,0,480,555)
 tagbox = (0,0,1200,555)
 fontsize = 150
@@ -72,6 +73,7 @@ with open("resources/pricebook.csv") as csv_file:
         for company in logolist:
             if company[1] == brand:
                 region = company[0].crop(logobox)  
+        print(brand + " " + item)
         im.paste(region,logobox)
 
         # handling the item name
@@ -83,7 +85,7 @@ with open("resources/pricebook.csv") as csv_file:
         while itemname.textsize(item,font=fnt)[0] > 650: 
             fontsize = fontsize - 1
             fnt = ImageFont.truetype(fontname,fontsize)
-            ycoord = ycoord + 0.5
+            ycoord = ycoord + 1
         itemname.text((518,ycoord),item,font=fnt)
         # reset font in case we messedwith it to fix sizing!
         fnt = ImageFont.truetype(fontname,185)
@@ -106,14 +108,14 @@ with open("resources/pricebook.csv") as csv_file:
             ## reset the position counter, and increase the sheet counter.
             if positioncounter == 8:
                 settemplate.save("tags/sheets/" + "sheet" + str(sheetcounter) + ".png","PNG")
-                settemplate = Image.open("resources/setof8.png")
+                settemplate = Image.open("resources/setof8.png").convert("RGBA")
                 sheetcounter = sheetcounter+1
                 positioncounter = 0
                 
 
         ## save the sheet and reopen the image fresh for new tag creation
         
-        im = Image.open("resources/full tag.png")
+        im = Image.open("resources/full tag.png").convert("RGBA")
 
 if positioncounter != 0:
     settemplate.save("sheet" + str(sheetcounter) + ".png","PNG")
