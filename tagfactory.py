@@ -17,7 +17,6 @@ from PIL import Image, ImageDraw, ImageFont
 im = Image.open("resources/full tag.png").convert("RGBA")
 settemplate = Image.open("resources/setof8.png").convert("RGBA")
 
-
 burton = Image.open("resources/logo/burtonlogo.png").convert("RGBA")
 jones = Image.open("resources/logo/jones logo.png").convert("RGBA")
 k2 = Image.open("resources/logo/k2logo.png").convert("RGBA")
@@ -60,7 +59,6 @@ positions = [(0,0,1200,555),(1200,0,2400,555),
 fontname = 'SairaCondensed-Regular.ttf'
 fnt = ImageFont.truetype(fontname,fontsize)
 
-
 with open("resources/pricebook.csv") as csv_file:
     csv_reader = csv.reader(csv_file,delimiter=',')
     for row in csv_reader:
@@ -93,7 +91,7 @@ with open("resources/pricebook.csv") as csv_file:
 
         # handling the item price
         itemprice = ImageDraw.Draw(im)
-        itemprice.text((518,240),price,font=fnt)
+        itemprice.text((518,240),'$' + price,font=fnt)
 
         # save the new tag
         im.save("tags/"+brand+" "+item+".png","PNG")
@@ -111,12 +109,12 @@ with open("resources/pricebook.csv") as csv_file:
                 settemplate = Image.open("resources/setof8.png").convert("RGBA")
                 sheetcounter = sheetcounter+1
                 positioncounter = 0
+                print(sheetcounter)
                 
 
         ## save the sheet and reopen the image fresh for new tag creation
         
         im = Image.open("resources/full tag.png").convert("RGBA")
-
+print(positioncounter)
 if positioncounter != 0:
-    settemplate.save("sheet" + str(sheetcounter) + ".png","PNG")
-     
+    settemplate.save("tags/sheets/sheet" + str(sheetcounter) + ".png","PNG")
