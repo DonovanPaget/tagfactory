@@ -59,6 +59,10 @@ positions = [(0,0,1200,555),(1200,0,2400,555),
 fontname = 'SairaCondensed-Regular.ttf'
 fnt = ImageFont.truetype(fontname,fontsize)
 
+# how many tags u want
+print('How many of each tag do you want?:')
+quant = input()
+
 with open("resources/pricebook.csv") as csv_file:
     csv_reader = csv.reader(csv_file,delimiter=',')
     for row in csv_reader:
@@ -98,7 +102,7 @@ with open("resources/pricebook.csv") as csv_file:
 
         ## crop the tag and paste it onto a sheet 3 times
         region = im.crop(tagbox)
-        for i in range(3):
+        for i in range(int(quant)):
             settemplate.paste(region,positions[positioncounter])
             positioncounter = positioncounter + 1
 
@@ -109,12 +113,13 @@ with open("resources/pricebook.csv") as csv_file:
                 settemplate = Image.open("resources/setof8.png").convert("RGBA")
                 sheetcounter = sheetcounter+1
                 positioncounter = 0
-                print(sheetcounter)
+                print('sheets: ' + str(sheetcounter))
                 
 
         ## save the sheet and reopen the image fresh for new tag creation
         
         im = Image.open("resources/full tag.png").convert("RGBA")
-print(positioncounter)
+# print(positioncounter)
+print('done')
 if positioncounter != 0:
     settemplate.save("tags/sheets/sheet" + str(sheetcounter) + ".png","PNG")
